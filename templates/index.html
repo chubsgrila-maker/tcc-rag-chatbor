@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte TI Nível 1 - RAG</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { color: #1e3a8a; text-align: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .chat-box { background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e2e8f0; }
+        .user-msg { color: #0f172a; font-weight: bold; margin-bottom: 10px; }
+        .bot-msg { color: #0284c7; white-space: pre-wrap; }
+        .sources { font-size: 0.85em; color: #64748b; margin-top: 15px; border-top: 1px dashed #cbd5e1; padding-top: 10px; }
+        textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 5px; resize: vertical; margin-bottom: 10px; font-family: inherit; }
+        button { background-color: #16a34a; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
+        button:hover { background-color: #15803d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Assistente Virtual - Service Desk N1</h2>
+        
+        <!-- Área onde a resposta aparecerá -->
+        {% if user_question %}
+        <div class="chat-box">
+            <div class="user-msg">Analista: "{{ user_question }}"</div>
+            <div class="bot-msg"><strong>Resposta (RAG):</strong><br>{{ bot_response }}</div>
+            
+            {% if sources %}
+            <div class="sources">
+                <strong>Manuais Consultados:</strong><br>
+                {% for source in sources %}
+                    - Arquivo: {{ source.source }} (Página: {{ source.page }})<br>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Formulário de Envio -->
+        <form method="POST">
+            <label for="question" style="font-weight: bold; color: #334155;">Descreva o incidente ou dúvida técnica:</label>
+            <textarea name="question" id="question" rows="4" placeholder="Ex: Como configuro o backup do servidor Windows?" required></textarea>
+            <button type="submit">Processar e Buscar Instrução</button>
+        </form>
+    </div>
+</body>
+</html>
