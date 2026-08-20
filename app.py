@@ -12,7 +12,7 @@ from langchain_core.prompts import ChatPromptTemplate
 # ==============================================================================
 # ATENÇÃO: Cole a sua chave do Groq aqui (começa com gsk_)
 # os.environ["GROQ_API_KEY"] = "SUA_CHAVE_AQUI"
-os.environ["GROQ_API_KEY"] = "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"
+os.environ["GROQ_API_KEY"] = "g"
 
 app = Flask(__name__)
 
