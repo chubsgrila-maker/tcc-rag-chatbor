@@ -11,7 +11,8 @@ from langchain_core.prompts import ChatPromptTemplate
 # 1. CONFIGURAÇÕES INICIAIS
 # ==============================================================================
 # ATENÇÃO: Cole a sua chave do Groq aqui (começa com gsk_)
-os.environ["GROQ_API_KEY"] = "SUA_CHAVE_AQUI"
+# os.environ["GROQ_API_KEY"] = "SUA_CHAVE_AQUI"
+os.environ["GROQ_API_KEY"] = "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"
 
 app = Flask(__name__)
 
@@ -49,7 +50,10 @@ else:
 retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
 
 # O LLM agora usa o Llama 3.3 via Groq (Super rápido, sem erros de API de nomenclatura)
-llm = ChatGroq(model_name="llama-3.3-70b-versatile", temperature=0)
+# llm = ChatGroq(model_name="llama-3.1-8b-instant", temperature=0)
+# llm = ChatGroq(model_name="mixtral-8x7b-32768", temperature=0)
+llm = ChatGroq(model_name="openai/gpt-oss-20b", temperature=0)
+
 
 system_prompt = (
     "Você é um assistente de suporte técnico Nível 1.\n"
